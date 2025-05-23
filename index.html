@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz cumpleaños amor ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    canvas {
+      border: none;
+    }
+    h2 {
+      margin-top: 20px;
+      color: white;
+      font-size: 1.5em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="heartCanvas" width="600" height="600"></canvas>
+  <h2>Te quiero amor, feliz cumpleaños ❤️</h2>
+
+  <script>
+    const canvas = document.getElementById("heartCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.translate(300, 300); // centrar
+
+    let t = 0;
+
+    function heartX(t) {
+      return 16 * Math.pow(Math.sin(t), 3);
+    }
+
+    function heartY(t) {
+      return 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+    }
+
+    function drawHeart() {
+      if (t >= 2 * Math.PI) return;
+      const x = heartX(t) * 15;
+      const y = -heartY(t) * 15;
+      ctx.fillStyle = "red";
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, 2 * Math.PI);
+      ctx.fill();
+      t += 0.02;
+      requestAnimationFrame(drawHeart);
+    }
+
+    drawHeart();
+  </script>
+</body>
+</html>
